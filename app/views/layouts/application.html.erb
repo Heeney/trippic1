@@ -8,26 +8,12 @@
 </head>
 <body>
   
-  <header class="navbar navbar-fixed-top navbar-default">
-    <div class="container">
-      <%= link_to "Trippic", "", class: "btn btn-lg btn-danger", id: "logo" %>
-      <div class="nav_item">
-        <%= link_to "link1", "", class: "btn btn-default btn-success" %>
-      </div>
-      <div class="nav_item">
-        <%= link_to "link1", "", class: "btn btn-default btn-success" %>
-      </div>
-      <div class="nav_item">
-        <%= link_to "link1", "", class: "btn btn-default btn-success" %>
-      </div>
-    </div>
-  </header>
+  <%= render 'layouts/navigation' %>
   
   <div class="container">
     <%= yield %>
-    <div class="footer">
-      <p> Trippic 2015 </p>
-    </div>
+    
+    <%= render 'layouts/footer' %>
     
   </div>
 </body>

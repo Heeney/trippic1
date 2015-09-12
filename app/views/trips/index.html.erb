@@ -1,6 +1,6 @@
 <%= render 'shared/page_title', title: "All Trippics" %>
 
-<% @trips.each do |trip| %>
+<% @trips.each do |trip| %> <%# Iterating through each trip %>
     <div class="row">
         
         <div class="col-md-2">
@@ -10,12 +10,15 @@
             </section>
         </div>
         
-        <div class="col-lg-8 well">
+        <div class="col-lg-6 well">
             <h4><%= link_to trip.name, trip_path(trip) %></h4>
             <p><%= trip.summary %></p>
             <p> 
                 <span class='quite'><small> <%= time_ago_in_words(trip.created_at) %> ago</small></span> 
             </p>
+        </div>
+        <div class="col-md-4"> <%# trip.picture single due o iteration %>
+            <%= image_tag(trip.picture.url, size:"250x150", class: "gravatar") if trip.picture? %> <%#return true if picture and display %>
         </div>
         
     </div>

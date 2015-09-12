@@ -9,7 +9,10 @@
     </div>
     <div class="col-md-8">
         <%= link_to "Edit this Trippic", edit_trip_path(@trip), class: "btn btn-success pull-right" %>
-        <h3><%= @trip.summary %></h3>
+        <h3><%= @trip.summary %></h3> 
+        <div class="show_trip">
+            <%= image_tag(@trip.picture.url, class: "gravatar") if @trip.picture? %>
+        </div>
         <div class="well">
           <p>
               <strong>Trip Advice:</strong> 

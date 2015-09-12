@@ -1,0 +1,23 @@
+<%= render 'shared/page_title', title: @trip.name %>
+
+<div class="row">
+    <div class="col-md-4 pull-right center">
+        <%= gravatar_for @trip.traveller, size:200 %>
+        <p>
+            <h5> Invisioned to you by: <%= @trip.traveller.travellername %></h5>
+        </p> 
+    </div>
+    <div class="col-md-8">
+        <%= link_to "Edit this Trippic", edit_trip_path(@trip), class: "btn btn-success pull-right" %>
+        <h3><%= @trip.summary %></h3>
+        <div class="well">
+          <p>
+              <strong>Trip Advice:</strong> 
+          </p>  
+          <%= simple_format(@trip.description) %> 
+        </div>
+    </div>
+</div>
+
+<h5><%= link_to 'Return to Trip Listing', trips_path, class: "btn btn-warning btn-small"%></h5>
+

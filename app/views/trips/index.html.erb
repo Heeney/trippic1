@@ -1,0 +1,23 @@
+<%= render 'shared/page_title', title: "All Trippics" %>
+
+<% @trips.each do |trip| %>
+    <div class="row">
+        
+        <div class="col-md-2">
+            <section class="traveller_info center">
+                <%= gravatar_for trip.traveller, size: 100 %>
+                <h5>Traveller Name: <%= trip.traveller.travellername %></h5>
+            </section>
+        </div>
+        
+        <div class="col-lg-8 well">
+            <h4><%= link_to trip.name, trip_path(trip) %></h4>
+            <p><%= trip.summary %></p>
+            <p> 
+                <span class='quite'><small> <%= time_ago_in_words(trip.created_at) %> ago</small></span> 
+            </p>
+        </div>
+        
+    </div>
+    <hr/>
+<% end %>

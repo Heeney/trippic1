@@ -1,5 +1,7 @@
 <%= render 'shared/page_title', title: "All Trippics" %>
 
+<%= will_paginate %>
+
 <% @trips.each do |trip| %> <%# Iterating through each trip %>
     <div class="row">
         
@@ -14,8 +16,18 @@
             <h4><%= link_to trip.name, trip_path(trip) %></h4>
             <p><%= trip.summary %></p>
             <p> 
-                <span class='quite'><small> <%= time_ago_in_words(trip.created_at) %> ago</small></span> 
+                <span class='quite'><small> created: <%= time_ago_in_words(trip.created_at) %> ago, </small></span> 
+                <span class='quite'><small> updated: <%= time_ago_in_words(trip.updated_at) %> ago </small></span> 
+
             </p>
+            <div class="pull-right">
+              <%= link_to like_trip_path(trip, like: true), method: :post do %>
+                 <i class="glyphicon glyphicon-thumbs-up"></i> &nbsp <%= trip.thumbs_up_total %>
+              <%end%> &nbsp&nbsp&nbsp&nbsp
+              <%= link_to like_trip_path(trip, like: false), method: :post do %>
+                 <i class="glyphicon glyphicon-thumbs-down"></i> &nbsp <%= trip.thumbs_down_total %>
+              <%end%>
+          </div>
         </div>
         <div class="col-md-4"> <%# trip.picture single due o iteration %>
             <%= image_tag(trip.picture.url, size:"250x150", class: "gravatar") if trip.picture? %> <%#return true if picture and display %>
@@ -24,3 +36,5 @@
     </div>
     <hr/>
 <% end %>
+
+<%= will_paginate %>

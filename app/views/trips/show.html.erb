@@ -17,7 +17,15 @@
           <p>
               <strong>Trip Advice:</strong> 
           </p>  
-          <%= simple_format(@trip.description) %> 
+          <%= simple_format(@trip.description) %>
+          <div class="pull-right">
+              <%= link_to like_trip_path(@trip, like: true), method: :post do %>
+                 <i class="glyphicon glyphicon-thumbs-up"></i> &nbsp <%= @trip.thumbs_up_total %>
+              <%end%> &nbsp&nbsp&nbsp&nbsp
+              <%= link_to like_trip_path(@trip, like: false), method: :post do %>
+                 <i class="glyphicon glyphicon-thumbs-down"></i> &nbsp <%= @trip.thumbs_down_total %>
+              <%end%>
+          </div>
         </div>
     </div>
 </div>

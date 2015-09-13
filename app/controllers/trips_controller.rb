@@ -1,7 +1,9 @@
 class TripsController < ApplicationController
    
    def index
-       @trips = Trip.all
+      @trips = Trip.paginate(page: params[:page], per_page: 4)
+       # Sorting the posts by amount of likes
+       #@trips = Trip.all.sort_by{|likes| likes.thumbs_up_total}.reverse #From most to least (.reverse) 
    end
     
    def show
@@ -43,6 +45,18 @@ class TripsController < ApplicationController
       end
    end
    
+   def like
+      @trip = Trip.find(params[:id])
+      like = Like.create(like: params[:like], traveller: Traveller.first, trip: @trip)
+      
+      if like.valid? # Showing messsage to user that you have already voted and you new vote has not been counted
+         flash[:success] = "Your selection was successful"
+         redirect_to :back
+      else
+         flash[:danger] = "You can only like/dislike a Trippic once"
+         redirect_to :back
+       end
+   end
    
       private
       

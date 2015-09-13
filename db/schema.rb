@@ -11,7 +11,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150912215005) do
+ActiveRecord::Schema.define(version: 20150912233034) do
+
+  create_table "likes", force: :cascade do |t|
+    t.boolean  "like"
+    t.integer  "traveller_id"
+    t.integer  "trip_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "travellers", force: :cascade do |t|
     t.string   "travellername"

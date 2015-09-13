@@ -12,7 +12,10 @@ Rails.application.routes.draw do
    # get 'trips/:id', to: 'trips#show', as: 'trip'
    # delete '/trips/:id', to: 'trips#destroy'
     
-    resources :trips
-
-
+    resources :trips do # Embedding the likes and 
+       member do 
+           post 'like'
+       end
+    end
+    
 end

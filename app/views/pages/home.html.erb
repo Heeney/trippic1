@@ -2,7 +2,9 @@
     <h1> Welcome to Trippic App</h1>
     
     <h2>
-        This is the home page for my cloud application project
+        
+        <p> The Idea of the Trippic App is to allow users to share their experiances and best tips and advice about visiting various destinations around the world
+        whilst also sharing a single photo which emcompasses their entire trip</p>
     </h2>
     
     <%= link_to "Sign up now!", register_path, class: "btn btn-lg btn-success" %>
@@ -30,4 +32,30 @@
         <p><%= link_to "Browse Trip Listings", trips_path, class: "btn btn-warning btn-small" %></p>
     </div>
 </div>
+<hr/>
+
+<%# https://developers.google.com/maps/tutorials/fundamentals/adding-a-google-map %>
+<style>
+      #map {
+        width: 100%;
+        height: 400px;
+      }
+    </style>
+    <script src="https://maps.googleapis.com/maps/api/js"></script>
+    <script>
+      function initialize() {
+        var mapCanvas = document.getElementById('map');
+        var mapOptions = {
+          center: new google.maps.LatLng(44.5403, -78.5463),
+          zoom: 8,
+          mapTypeId: google.maps.MapTypeId.ROADMAP
+        }
+        var map = new google.maps.Map(mapCanvas, mapOptions)
+      }
+      google.maps.event.addDomListener(window, 'load', initialize);
+    </script>
+
+<h1>Wheres Your Next Trip??</h1>
+<div id="map"></div>
+
     

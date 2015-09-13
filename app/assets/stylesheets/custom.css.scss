@@ -1,4 +1,4 @@
-$navbar-default-bg: #400000 ;
+$navbar-default-bg: #D5D5D5;
 $light-orange: #ff8c00;
 $navbar-default-color: $light-orange;
 
@@ -15,7 +15,7 @@ $navbar-default-color: $light-orange;
     text-transform: uppercase;
     letter-spacing: -1px;
     padding-top: 9px;
-    font-weight: bold;
+    font-weight: italic;
 }
 
 #logo_hover{
@@ -29,7 +29,7 @@ body{
 
 .nav_item{
     margin-left:25px;
-    float: left;
+    float: right;
     margin-top:20px;
 }
 
@@ -67,7 +67,7 @@ h2{
     color: #777;
 }
 
-.chef_info{
+.traveller_info{
     margin-top: 10px;
 }
 

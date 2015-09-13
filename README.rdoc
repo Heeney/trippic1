@@ -22,3 +22,30 @@ description: text
 - email must be present
 - email must be unique (Using for logins)
 - email must be valid
+
+
+Travellers:
+
+Already done:
+- Model and Validations
+- Traveller table with columns traveller name and email
+
+Need - 10pm
+- add pw to travellers table for auth and logins
+- use email as login - unique
+- register new travellers
+- display profile
+- list travellers
+- log in and out
+- restrict abillity to logged in travellers
+- edit only for traveller owner
+
+- use own harsh pw instead  of devise (I dont know whats going on with devise)
+- http://api.rubyonrails.org/classes/ActiveModel/SecurePassword/ClassMethods.html - bcrypt
+
+6am
+- Authentication 
+- show trip page edit update owned
+- Navigation - toggle menu
+- restrict thumbs
+- trip - restrict to owned

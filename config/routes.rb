@@ -18,4 +18,18 @@ Rails.application.routes.draw do
        end
     end
     
+    
+    resources :travellers, except: [:new]
+    
+    get '/register', to: 'travellers#new'
+    
+    get '/login', to: "logins#new"
+    post '/login', to: "logins#create"
+    get '/logout', to: "logins#destroy"
+    
+    
+    #login -> new session
+    #logout -> close session
+    #post login -> create session
+    
 end

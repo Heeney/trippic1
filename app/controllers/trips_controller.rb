@@ -1,4 +1,7 @@
 class TripsController < ApplicationController
+   before_action :set_trip, only: [:edit, :update, :show, :like]
+   before_action :require_user, except: [:show, :index]
+   before_action :require_same_user, only: [:edit]
    
    def index
       @trips = Trip.paginate(page: params[:page], per_page: 4)
@@ -7,7 +10,7 @@ class TripsController < ApplicationController
    end
     
    def show
-      @trip = Trip.find(params[:id])
+      
    end
    
    def new
@@ -16,7 +19,7 @@ class TripsController < ApplicationController
    
    def create
       @trip = Trip.new(trip_params) #STRONG PARAMS RAILS 4 - Explicitly List the params which can be accepted
-      @trip.traveller = Traveller.find(2)
+      @trip.traveller = current_user #here<-Causing same user
       
       if @trip.save
          #do something
@@ -29,15 +32,13 @@ class TripsController < ApplicationController
    
    
    def edit
-      @trip = Trip.find(params[:id])
    end
    
    
    
    def update
-      @trip = Trip.find(params[:id])
       if @trip.update(trip_params)
-         #do something
+         
          flash[:success] = "Your Trippic was updated successfully!"
          redirect_to trip_path(@trip)
       else
@@ -46,8 +47,7 @@ class TripsController < ApplicationController
    end
    
    def like
-      @trip = Trip.find(params[:id])
-      like = Like.create(like: params[:like], traveller: Traveller.first, trip: @trip)
+      like = Like.create(like: params[:like], traveller: current_user, trip: @trip)
       
       if like.valid? # Showing messsage to user that you have already voted and you new vote has not been counted
          flash[:success] = "Your selection was successful"
@@ -55,7 +55,7 @@ class TripsController < ApplicationController
       else
          flash[:danger] = "You can only like/dislike a Trippic once"
          redirect_to :back
-       end
+      end
    end
    
       private
@@ -63,5 +63,15 @@ class TripsController < ApplicationController
       def trip_params
          params.require(:trip).permit(:name, :summary, :description, :picture) #Adding Picture param
       end
-   
+      
+      def set_trip
+        @trip = Trip.find(params[:id]) 
+      end
+      
+      def require_same_user
+         if current_user != @trip.traveller
+            flash[:danger] = "You can only edit your own trips"
+            redirect_to trips_path
+         end
+      end
 end

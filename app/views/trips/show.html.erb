@@ -2,13 +2,17 @@
 
 <div class="row">
     <div class="col-md-4 pull-right center">
-        <%= gravatar_for @trip.traveller, size:200 %>
+        <%= link_to gravatar_for(@trip.traveller, size:200), traveller_path(@trip.traveller) %>
         <p>
             <h5> Invisioned to you by: <%= @trip.traveller.travellername %></h5>
         </p> 
     </div>
+    
+    
     <div class="col-md-8">
-        <%= link_to "Edit this Trippic", edit_trip_path(@trip), class: "btn btn-success pull-right" %>
+        <% if logged_in? and @trip.traveller == current_user %>
+            <%= link_to "Edit this Trippic", edit_trip_path(@trip), class: "btn btn-success pull-right" %>
+        <%end%>
         <h3><%= @trip.summary %></h3> 
         <div class="show_trip">
             <%= image_tag(@trip.picture.url, class: "gravatar") if @trip.picture? %>

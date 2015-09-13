@@ -7,7 +7,7 @@
         
         <div class="col-md-2">
             <section class="traveller_info center">
-                <%= gravatar_for trip.traveller, size: 100 %>
+                <%= link_to gravatar_for(trip.traveller, size: 100), traveller_path(trip.traveller) %>
                 <h5>Traveller Name: <%= trip.traveller.travellername %></h5>
             </section>
         </div>

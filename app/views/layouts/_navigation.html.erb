@@ -1,14 +1,33 @@
 <header class="navbar navbar-fixed-top navbar-default">
     <div class="container">
-      <%= link_to "Trippic", root_path, class: "btn btn-lg btn-danger", id: "logo" %>
+      <%= link_to "Trippic", root_path, class: "btn btn-lg btn-primary", id: "logo" %>
       <div class="nav_item">
         <%= link_to "link1", "", class: "btn btn-default btn-success" %>
       </div>
       <div class="nav_item">
         <%= link_to "link1", "", class: "btn btn-default btn-success" %>
       </div>
-      <div class="nav_item">
-        <%= link_to "New Trippic", new_trip_path, class: "btn btn-default btn-success" %>
-      </div>
+      <% if logged_in? %>
+        <div class="nav_item">
+          <%= link_to "New Trippic", new_trip_path, class: "btn btn-default btn-success" %>
+        </div>
+        <ul class="nav_item">
+          <li class="dropdown">
+            <%= link_to '#', class: "btn btn-default btn-danger dropdown-toggle ", "data-toggle" => "dropdown" do %>
+             <%= current_user.travellername %> <b class-"caret"></b>
+            <% end %>
+            <ul class='dropdown-menu'>
+              <li><%= link_to "View Profile", traveller_path(current_user) %></li>
+              <li><%= link_to "Edit Profile", edit_traveller_path(current_user)%></li>
+              <li class="divider"></li>
+              <li><%= link_to "Logout", logout_path %></li>
+            </ul>
+          </li>
+        </ul>
+        <% else %>
+        <div class="nav_item">
+          <%= link_to "Log In", login_path, class: "btn btn-default btn-success" %>
+        </div>
+        <%end%>
     </div>
 </header>

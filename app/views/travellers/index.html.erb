@@ -1,0 +1,18 @@
+<%= render 'shared/page_title', title: "All travellers" %>
+<div class="row">
+    <div class="col-md-4 col-md-offset-4 center">
+    <%= will_paginate %>
+    </div>
+</div>
+
+<% @travellers.each do |traveller| %>
+    <div class="row">
+        <div class="col-md-4 col-md-offset-4 center">
+        <%= link_to gravatar_for(traveller, size: 200), traveller_path(traveller) %>
+        <p>
+            <h5> Traveller name: <%= traveller.travellername %></h5>
+        </p>
+        </div>
+    </div>
+
+<% end %>

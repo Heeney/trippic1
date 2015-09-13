@@ -1,0 +1,38 @@
+<%= render 'shared/page_title', title: "Traveller: " + @traveller.travellername %>
+
+
+<div class="row">
+    <div class="col-md-4 col-md-offset-4 center"> 
+        <%= gravatar_for @traveller, size:200 %>
+        <hr/>
+    </div>
+</div>
+
+
+
+<div class="row">
+    <div class="col-md-4 col-md-offset-4 center"
+    <h3><em> Trips:</em></div></h3>
+    <%= will_paginate @trips %>
+</div>
+    
+<% @trips.each do |trip| %>
+    <div class="row">
+     <div class="col-lg-6 well col-lg-offset-3">
+        <h4><%= link_to trip.name, trip_path(trip) %></h4>
+        <p><%= trip.summary %></p>
+        <p> 
+            <span class='quite'><small> created: <%= time_ago_in_words(trip.created_at) %> ago, </small></span> 
+            <span class='quite'><small> updated: <%= time_ago_in_words(trip.updated_at) %> ago </small></span> 
+        </p>
+        <div class="pull-right">
+            <%= link_to like_trip_path(trip, like: true), method: :post do %>
+                <i class="glyphicon glyphicon-thumbs-up"></i> &nbsp <%= trip.thumbs_up_total %>
+            <%end%> &nbsp&nbsp&nbsp&nbsp
+            <%= link_to like_trip_path(trip, like: false), method: :post do %>
+                <i class="glyphicon glyphicon-thumbs-down"></i> &nbsp <%= trip.thumbs_down_total %>
+            <%end%>
+         </div>
+        </div>
+    </div>
+<%end%>

@@ -1,5 +1,14 @@
 <%= render 'shared/page_title', title: "All Trippics" %>
 
+<ul class="nav nav-tabs"> <%# Navigation on Trips page %>
+    <li class='active'>
+        <%= link_to "Trips", trips_path %>
+    </li>
+    <li>
+        <%= link_to "Travellers", travellers_path %>
+    </li>
+</ul>
+
 <%= will_paginate %>
 
 <% @trips.each do |trip| %> <%# Iterating through each trip %>
